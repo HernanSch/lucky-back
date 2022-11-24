@@ -1,9 +1,9 @@
-
 const express = require('express');
 const dotenv = require ("dotenv");
 const {connect} = require ("./src/utils/db");
 const {isAuth} = require ("./src/middlewares/auth")
 const cloudinary = require("cloudinary").v2
+const cors = require('cors')
 
 const petsRouter = require ("./src/api/routes/pets.routes")
 const animalProtectorRouter = require ("./src/api/routes/animalProtector.routes")
@@ -19,6 +19,11 @@ cloudinary.config({
     api_key:process.env.CLOUD_KEY,
     api_secret:process.env.CLOUD_SECRET
 });
+
+app.use (cors ({
+    origin: "*",
+    credentials: true
+}))
 
 
 app.use(express.json());
