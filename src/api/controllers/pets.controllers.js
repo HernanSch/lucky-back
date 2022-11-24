@@ -33,26 +33,28 @@ const postNewPets = async (req,res)=> {
     }
 };
 
-const putPets = async (req,res)=> {
-    try{
-    const{id} = req.params;
+const putPets = async (req, res, next) => {
     console.log(req.body)
-    const putPets = new Pets(req.body);
-    putPets._id = id;
+    console.log(req.params)
+    try{
+        const{id} = req.params;
+        console.log(req.body)
+        const putPets = new Pets(req.body);
+        putPets._id = id;
+        
+        if(req.files.photo){
+            putPets.photo = req.files.photo[0].path
+        }
     
-    if(req.file){
-        putPets.photo = req.file.path
+        const petsDB = await Pets.findByIdAndUpdate(id, putPets);
+        if(petsDB.photo){
+            deleteFile(petsDB.photo)
+        }
+        
+        return res.status(200).json(petsDB);
+    } catch (error){
+        return res.status(500).json(error)
     }
-    
-    const PetsDb = await Pets.findByIdAndUpdate(id, putPets, {new: true});
-    if(PetsDb){
-        deleteFile(modeloDB.photo)
-    }
-    
-    return res.status(200).json(PetsDb);
-} catch (error){
-    return res.status(500).json(error)
-}
 };
 
 
