@@ -13,7 +13,6 @@ const petsSchema = new Schema ({
     category:{type:String,require:true},
     birthday:{type:String,require:true},
     weigth:{type:String,require:true},
-    size:{type:String,require:true},
     record:{type:String},
     vaccinated:{type:Boolean,require:true},
     dewormed:{type:Boolean,require:true},

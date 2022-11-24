@@ -6,7 +6,7 @@ const {getAllPets, postNewPets,putPets} = require("../controllers/pets.controlle
 
 router.get("/", getAllPets);
 router.post("/",upload.fields([{name:'photo', maxCount: 1}]), postNewPets);
-router.put("/:id,",upload.fields([{name:'photo', maxCount: 1}]),putPets)
+router.put("/:id",upload.fields([{name:'photo', maxCount: 1}]),putPets)
 
 
 

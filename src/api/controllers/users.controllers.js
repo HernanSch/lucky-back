@@ -1,4 +1,4 @@
-const User = require("../models/users.models");
+const Users = require("../models/users.models");
 const bcrypt = require("bcrypt");
 const { validationPassword, validationEmail } = require("../../validators/validation");
 const {generateSign, verifyJwt} = require("../../jwt/jwt")
@@ -15,7 +15,7 @@ const getAllUsers = async (req,res)=> {
 const register = async (req, res, next) => {
     try {
         console.log(req.body)
-        const newUser = new User(req.body);
+        const newUser = new Users(req.body);
         if(!validationEmail(req.body.mail)){
             console.log({code: 403, message: "Invalid email"})
             res.status(403).send({code: 403, message: "Invalid email"});
@@ -37,7 +37,7 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
     try {
 
-        const userInfo = await User.findOne({email: req.body.email});
+        const userInfo = await Users.findOne({email: req.body.email});
         console.log(userInfo);
         if(userInfo == null){
             return res.status(400).json({message: "invalid user"});
