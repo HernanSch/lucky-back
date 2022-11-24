@@ -14,8 +14,9 @@ const getAllUsers = async (req,res)=> {
 
 const register = async (req, res, next) => {
     try {
+        console.log(req.body)
         const newUser = new User(req.body);
-        if(!validationEmail(req.body.email)){
+        if(!validationEmail(req.body.mail)){
             console.log({code: 403, message: "Invalid email"})
             res.status(403).send({code: 403, message: "Invalid email"});
             return next();
