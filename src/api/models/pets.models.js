@@ -8,6 +8,7 @@ const petsSchema = new Schema ({
     colour:{type:String,require:true},
     name:{type:String,require:true},
     age:{type:String,require:true},
+    size:{type:String,require:true},
     city:{type:String,require:true},
     category:{type:String,require:true},
     birthday:{type:String,require:true},
