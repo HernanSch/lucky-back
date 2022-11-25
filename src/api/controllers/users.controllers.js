@@ -47,6 +47,7 @@ const login = async (req, res, next) => {
             // console.log(userInfo)
             const token = generateSign(userInfo._id, userInfo.email) //token
             return res.status(200).json(token); //token
+            
         }else{
             return res.status(400).json({message: "invalid password"});
         }
