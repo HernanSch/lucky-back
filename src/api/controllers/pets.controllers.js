@@ -34,11 +34,11 @@ const postNewPets = async (req,res)=> {
 };
 
 const putPets = async (req, res, next) => {
-    console.log(req.body)
-    console.log(req.params)
+    //console.log(req.body)
+    //console.log(req.params)
     try{
         const{id} = req.params;
-        console.log(req.body)
+        //console.log(req.body)
         const putPets = new Pets(req.body);
         putPets._id = id;
         
