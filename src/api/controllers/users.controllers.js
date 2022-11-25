@@ -37,16 +37,19 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
     try {
 
-        const userInfo = await Users.findOne({email: req.body.email});
-        console.log(userInfo);
+        const userInfo = await Users.findOne({  mail: req.body.mail});
+        console.log(req.body.mail);
+        console.log(userInfo)
         if(userInfo == null){
             return res.status(400).json({message: "invalid user"});
         }
         if(bcrypt.compareSync(req.body.password, userInfo.password)){
             //userInfo.password = null;
             // console.log(userInfo)
-            const token = generateSign(userInfo._id, userInfo.email) //token
-            return res.status(200).json(token); //token
+            const token = generateSign(userInfo._id, userInfo.mail) //token
+            
+            return res.status(200).json({userInfo,token}); //token
+            
         }else{
             return res.status(400).json({message: "invalid password"});
         }
