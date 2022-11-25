@@ -1,80 +1,83 @@
 {
- 
+ 
   "name": "lucky-back",
- 
+ 
   "version": "1.0.0",
- 
+ 
   "main": "index.js",
- 
+ 
   "scripts": {
- 
-   
+ 
+   
   "test": "echo \"Error: no test specified\" && exit 1",
- 
-   
+ 
+   
   "start": "node index.js",
- 
-   
+ 
+   
   "dev": "nodemon index.js"
- 
+ 
   },
- 
+ 
   "repository": {
- 
-   
+ 
+   
   "type": "git",
- 
-   
+ 
+   
   "url": "git+https://github.com/HernanSch/lucky-back.git"
- 
+ 
   },
- 
+ 
   "keywords": [],
- 
+ 
   "author": "",
- 
+ 
   "license": "ISC",
- 
+ 
   "dependencies": {
- 
-   
+ 
+   
   "bcrypt": "^5.1.0",
- 
-   
+ 
+   
   "cloudinary": "^1.32.0",
- 
-   
+ 
+   
+  "cors": "^2.8.5",
+ 
+   
   "dotenv": "^16.0.3",
- 
-   
+ 
+   
   "express": "^4.18.2",
- 
-   
+ 
+   
   "jsonwebtoken": "^8.5.1",
- 
-   
+ 
+   
   "mongoose": "^6.7.3",
- 
-   
+ 
+   
   "multer-storage-cloudinary": "^4.0.0"
- 
+ 
   },
- 
+ 
   "devDependencies": {
- 
-   
+ 
+   
   "nodemon": "^2.0.20"
- 
+ 
   },
- 
+ 
   "bugs": {
- 
-   
+ 
+   
   "url": "https://github.com/HernanSch/lucky-back/issues"
- 
+ 
   },
- 
+ 
   "homepage": "https://github.com/HernanSch/lucky-back#readme",
- 
+ 
   "description": ""
 }

@@ -8,6 +8,7 @@ const cloudinary = require("cloudinary").v2
 const petsRouter = require ("./src/api/routes/pets.routes")
 const animalProtectorRouter = require ("./src/api/routes/animalProtector.routes")
 const userRouter = require ("./src/api/routes/users.routes")
+const cors = require('cors');
 const PORT = process.env.PORT || 7000;
 dotenv.config();
 
@@ -24,7 +25,10 @@ cloudinary.config({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(cors())
+
 app.use("/pets", petsRouter);
 app.use("/animalProtector", animalProtectorRouter);
 app.use("/users", userRouter);
 app.listen(PORT, () => console.log(`listening on port: http://localhost:${PORT}`));
+

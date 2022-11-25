@@ -6,6 +6,6 @@ const {isAuth} = require('../../middlewares/auth');
 router.get("/register",getAllUsers)
 router.post("/register", register)
 router.post("/login", login)
-router.post('/logout',[isAuth], logout)
+router.post('/logout', logout)
 
 module.exports = router;
