@@ -12,6 +12,7 @@ const getAllAnimalProtector = async (req,res)=> {
     }
 };
 
+
 const postNewAnimalProtector = async (req,res)=> {
     try{
         console.log(req.body)        
