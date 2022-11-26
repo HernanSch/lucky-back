@@ -9,6 +9,19 @@ const getAllPets = async (req,res)=> {
         return res.status(500).json(error)
     }
 };
+const getPetsByID = async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const petsByID = await Pets.findById(id);
+      return res.json({
+        status: 200,
+        
+        pet: petsByID,
+      });
+    } catch (error) {
+      return next(error);
+    }
+};
 
 const postNewPets = async (req,res)=> {
     try{
@@ -58,4 +71,6 @@ const putPets = async (req, res, next) => {
 };
 
 
-module.exports = {getAllPets, postNewPets, putPets};
+
+
+module.exports = {getAllPets, postNewPets, putPets, getPetsByID};

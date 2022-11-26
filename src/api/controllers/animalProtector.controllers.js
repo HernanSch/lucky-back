@@ -12,6 +12,20 @@ const getAllAnimalProtector = async (req,res)=> {
     }
 };
 
+const getProtectorByID = async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const petsByID = await AnimalProtector.findById(id);
+      return res.json({
+        status: 200,
+        
+        pet: petsByID,
+      });
+    } catch (error) {
+      return next(error);
+    }
+};
+
 
 const postNewAnimalProtector = async (req,res)=> {
     try{
@@ -99,4 +113,4 @@ const logoutProtector = (req, res, next) => {
 
 
 
-module.exports = {getAllAnimalProtector, postNewAnimalProtector, putAnimalProtector, loginProtector, logoutProtector};
+module.exports = {getAllAnimalProtector, getProtectorByID, postNewAnimalProtector, putAnimalProtector, loginProtector, logoutProtector};
