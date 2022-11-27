@@ -1,4 +1,5 @@
 const Users = require("../models/users.models");
+const Pets = require("../models/pets.models");
 const bcrypt = require("bcrypt");
 const { validationPassword, validationEmail } = require("../../validators/validation");
 const {generateSign, verifyJwt} = require("../../jwt/jwt")
@@ -67,4 +68,37 @@ const logout = (req, res, next) => {
     }
 };
 
-module.exports = {register, login, logout,getAllUsers}
+
+const addPets = async (req, res, next) => {
+  
+    try{
+        const{id} = req.params;
+       // console.log(req.body)
+        const putPets = new Users(req.body);
+      
+        putPets._id = id;
+        
+        if(req.files.photo){
+            putPets.photo = req.files.photo[0].path
+        }
+        const filter = {_id:req.params.id}
+
+        
+        const petsDB = await Users.findOneAndUpdate(filter,{
+            $addToSet:{
+                putPets:req.body.searchs }
+         });
+         console.log(putPets)
+         
+        
+        if(petsDB.photo){
+            deleteFile(petsDB.photo)
+        }
+        
+        return res.status(200).json(petsDB);
+    } catch (error){
+        return res.status(500).json(error)
+    }
+};
+
+module.exports = {register, login, logout,getAllUsers,addPets}
