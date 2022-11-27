@@ -66,5 +66,53 @@ const logout = (req, res, next) => {
         return res.status(500).json(error) ;
     }
 };
+const addPets = async (req,res, next)=> {
+    console.log(req.params)
+    console.log(req.body)
+    
+    try{
+    const{id} = req.params;
+    const putUser = new Users(req.body);
+    putUser._id = id;
 
-module.exports = {register, login, logout,getAllUsers}
+    if(req.files.photo){
+        putUser.photo = req.files.photo[0].path
+    }
+    const filter = { _id: req.params.id};     
+    const animalDB = await Users.findOneAndUpdate(filter, {
+        $addToSet: {
+            searchs: req.body.searchs
+        }
+    });
+    if(animalDB){
+        return res.status(404).json({"message": "Actualizado"});
+    }
+    return res.status(200).json(animalDB);
+} catch (error){
+    return res.status(500).json(error)
+}
+};
+// const addPets = async (req,res, next)=> {
+//     console.log(req.params)
+//     console.log(req.body)
+    
+//     try{
+//     const{id} = req.params;
+//     const putUser = new Users(req.body);
+//     putUser._id = id;
+
+//     if(req.files.photo){
+//         putUser.photo = req.files.photo[0].path
+//         }
+
+//     const animalDB = await Users.findByIdAndUpdate(id, putUser, {new: true});
+//     if(animalDB){
+//         return res.status(404).json({"message": "Actualizado"});
+//     }
+//     return res.status(200).json(animalDB);
+// } catch (error){
+//     return res.status(500).json(error)
+// }
+// };
+
+module.exports = {register, login, logout, getAllUsers, addPets}
