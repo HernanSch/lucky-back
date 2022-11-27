@@ -26,8 +26,6 @@ const getProtectorByID = async (req, res, next) => {
     }
 };
 
-
-
 const postNewAnimalProtector = async (req,res)=> {
     try{
         console.log(req.body)        
