@@ -82,17 +82,22 @@ const putAnimalProtector = async (req,res, next)=> {
 const loginProtector = async (req, res, next) => {
     try {
 
-        const userInfo = await AnimalProtector.findOne({mail: req.body.mail});
-        console.log(userInfo);
-        if(userInfo == null){
+        const protectorInfo = await AnimalProtector.findOne({mail: req.body.mail});
+        console.log(protectorInfo);
+        console.log("hola")
+        if(protectorInfo == null){
             return res.status(400).json({message: "invalid user"});
         }
-        if(bcrypt.compareSync(req.body.password, userInfo.password)){
+       
+        if(bcrypt.compareSync(req.body.password, protectorInfo.password)){
             //userInfo.password = null;
-            // console.log(userInfo)
-            const token = generateSign(userInfo._id, userInfo.mail) //token
-            return res.status(200).json(token); //token
+            
+            const token = generateSign(protectorInfo._id, protectorInfo.mail) //token
+           console.log(token)
+
+            return res.status(200).json({protectorInfo,token}); //token
         }else{
+            
             return res.status(400).json({message: "invalid password"});
         }
 

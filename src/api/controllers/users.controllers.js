@@ -41,7 +41,7 @@ const login = async (req, res, next) => {
         console.log(req.body.mail);
         console.log(userInfo)
         if(userInfo == null){
-            return res.status(400).json({message: "invalid user"});
+            return res.status(400).json({message: "invalido user"});
         }
         if(bcrypt.compareSync(req.body.password, userInfo.password)){
             //userInfo.password = null;
@@ -75,15 +75,17 @@ const addPets = async (req,res, next)=> {
     const putUser = new Users(req.body);
     putUser._id = id;
 
-    if(req.files.photo){
+    if(req.files && req.files.photo){
         putUser.photo = req.files.photo[0].path
     }
     const filter = { _id: req.params.id};     
     const animalDB = await Users.findOneAndUpdate(filter, {
         $addToSet: {
-            searchs: req.body.searchs
+            pets: req.body.pets
+        
         }
-    });
+        
+    });console.log(animalDB)
     if(animalDB){
         return res.status(404).json({"message": "Actualizado"});
     }
