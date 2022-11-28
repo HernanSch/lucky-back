@@ -86,7 +86,7 @@ const loginProtector = async (req, res, next) => {
         console.log(protectorInfo);
         console.log("hola")
         if(protectorInfo == null){
-            return res.status(400).json({message: "invalid user"});
+            return res.status(400).json({message: "invalid users"});
         }
        
         if(bcrypt.compareSync(req.body.password, protectorInfo.password)){
