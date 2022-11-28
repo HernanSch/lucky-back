@@ -12,6 +12,20 @@ const getAllUsers = async (req,res)=> {
     }
 };
 
+const getUserByID = async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const userByID = await Users.findById(id);
+      return res.json({
+        status: 200,
+        
+        user: userByID,
+      });
+    } catch (error) {
+      return next(error);
+    }
+};
+
 const register = async (req, res, next) => {
     try {
         console.log(req.body)
@@ -117,4 +131,4 @@ const addPets = async (req,res, next)=> {
 // }
 // };
 
-module.exports = {register, login, logout, getAllUsers, addPets}
+module.exports = {register, login, logout, getAllUsers, addPets, getUserByID}

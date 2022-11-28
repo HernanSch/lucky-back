@@ -25,6 +25,8 @@ const petsSchema = new Schema ({
     delivery:{type:Boolean,require:true},
     photo:{type:String,require:true},
     condition:{type:String,require:true},
+    personality:{type:String,require:true},
+    description:{type:String,require:true},
     animalProtectors:[{type:Schema.Types.ObjectId,ref:"animalProtector"}]      
 })
 

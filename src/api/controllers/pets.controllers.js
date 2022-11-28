@@ -28,13 +28,13 @@ const postNewPets = async (req,res)=> {
         const {species,sex, colour,name, image,
             age,size,city,category,birthday, weigth,record,vaccinated,dewormed,
             healthy,sterilized,identified,microchip,requirements,
-            adoptionCost,delivery,photo,condition
+            adoptionCost,delivery,photo,condition,personality,description
         } = req.body
        
         const newPet = new Pets({species,sex, colour,name, image,
             age,size,city,category,birthday, weigth,record,vaccinated,dewormed,
             healthy,sterilized,identified,microchip,requirements,
-            adoptionCost,delivery,photo,condition
+            adoptionCost,delivery,photo,condition,personality,description
         });
         if(req.files.photo){
             newPet.photo = req.files.photo[0].path
